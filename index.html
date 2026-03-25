@@ -81,12 +81,17 @@
             top: 0.6cm;
             right: 1.5cm;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
             font-size: 10px;
             font-weight: bold;
             color: #000;
+            text-align: right;
+            max-width: 6.5cm;
         }
+        .factura-pregunta { font-size: 9px; line-height: 1.2; font-weight: bold; }
+        .factura-opciones { display: flex; align-items: center; gap: 10px; }
         .factura-opcion { display: inline-flex; align-items: center; gap: 4px; }
         .factura-cuadro {
             width: 11px;
@@ -333,8 +338,11 @@
             container.innerHTML += `
                 <div class="recibo-unit" id="recibo-${i}">
                     <div class="factura-indicador">
-                        <span class="factura-opcion">SI <span class="factura-cuadro"></span></span>
-                        <span class="factura-opcion">NO <span class="factura-cuadro"></span></span>
+                        <span class="factura-pregunta">¿Requiere factura fiscal?</span>
+                        <div class="factura-opciones">
+                            <span class="factura-opcion">SÍ <span class="factura-cuadro"></span></span>
+                            <span class="factura-opcion">NO <span class="factura-cuadro"></span></span>
+                        </div>
                     </div>
                     <table class="header" width="100%">
                         <tr>
