@@ -133,9 +133,8 @@
         </div>
         <div><label>Copias:</label>
             <select id="cantidad" onchange="controlarVisibilidadAvanzada()" autocomplete="off">
-                <option value="1" selected>1 Recibo</option>
-                <option value="2">2 Recibos (1 hoja)</option>
-                <option value="4">4 Recibos (2 hojas)</option>
+                <option value="2" selected>2 recibos — cliente y proveedor (1 hoja)</option>
+                <option value="4">4 recibos (2 hojas)</option>
             </select>
         </div>
         <div>
@@ -193,18 +192,16 @@
         mont: 'MONTAJES. '
     };
 
-    // --- LÓGICA DE VISIBILIDAD (1 vs Varios) ---
+    // --- LÓGICA DE VISIBILIDAD (varias copias: sección avanzada) ---
     function controlarVisibilidadAvanzada() {
         const cant = parseInt(document.getElementById('cantidad').value);
         const seccionAvanzada = document.getElementById('seccion-avanzada');
         const checkIndividual = document.getElementById('checkIndividual');
 
-        if (cant === 1) {
-            // FUERZA BRUTA: Si es 1, ocultar la caja avanzada y desmarcar el check
+        if (cant <= 1) {
             seccionAvanzada.style.display = 'none';
-            checkIndividual.checked = false; 
+            checkIndividual.checked = false;
         } else {
-            // Si son más de 1, mostrar la caja avanzada
             seccionAvanzada.style.display = 'block';
         }
         // Actualizar la interfaz para reflejar si está marcado o no (o forzado a no estarlo)
@@ -273,7 +270,7 @@
                 `;
             }
         } else {
-            // MODO GLOBAL (1 copia o checkbox desmarcado)
+            // MODO GLOBAL (una sola tanda de datos o checkbox desmarcado)
             globales.style.display = 'block'; 
         }
         renderRecibos(); 
@@ -425,9 +422,8 @@
         }
     }
 
-    // Inicializar: Asegurar que se oculte al cargar si está en 1
     window.onload = function() {
-        document.getElementById('cantidad').value = "1"; // Forzar valor visual
+        document.getElementById('cantidad').value = "2";
         controlarVisibilidadAvanzada();
     };
 </script>
